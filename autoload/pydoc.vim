@@ -1,5 +1,4 @@
 function! s:read(name) abort
-    setlocal keywordprg=:Pydoc
     keepjumps execute 'silent r!python -m pydoc ' . shellescape(a:name)
     Man!
     keepjumps normal! gg
@@ -51,6 +50,7 @@ function! pydoc#setup() abort
         au!
         au BufReadCmd pydoc://*
             \ call s:read(matchstr(expand('<amatch>'), 'pydoc://\zs.*'))
+        au BufEnter pydoc://* setlocal keywordprg=:Pydoc
     augroup END
 
     command! -bar -nargs=1 Pydoc call s:pydoc(<q-args>)
