@@ -73,7 +73,6 @@ function! s:pydoc(name) abort
 endfunction
 
 function! pydoc#setup() abort
-    let g:pydoc_setup = 1
     augroup pydoc
         au!
         au BufReadCmd pydoc://*
