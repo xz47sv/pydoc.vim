@@ -25,9 +25,10 @@
 "SOFTWARE.
 
 function! s:read(name) abort
-    setlocal keywordprg=:Pydoc
+    setlocal keywordprg=:Pydoc modifiable
     keepjumps execute 'silent r!python -m pydoc ' . shellescape(a:name)
     Man!
+    setlocal nomodifiable
     keepjumps normal! gg
     execute 'file pydoc://' . a:name
 endfunction
